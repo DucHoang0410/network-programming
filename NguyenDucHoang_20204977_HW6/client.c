@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
     while (1)
     {
         sin_size = sizeof(struct sockaddr);
-        FILE *file = fopen("./doremon1.jpg", "rb");
+        FILE *file = fopen("./doremon.jpg", "rb");
         while (1)
         {
             int choice;
@@ -107,16 +107,15 @@ int main(int argc, char *argv[])
                 }
                 break;
             case 2:
-			printf("ABC\n");
         
 				if (!file) {
-        			perror("Lỗi mở file ảnh");
+        			perror("Error: ");
        				return -1;
     			}
 				while (!feof(file)) {
        				size_t bytesRead = fread(buff, 1, sizeof(buff), file);
         			if (send(client_sock, buff, bytesRead, 0) < 0) {
-            			perror("Lỗi gửi dữ liệu");
+            			perror("Error: ");
             			return -1;
         			}
         			bzero(buff, BUFF_SIZE);

@@ -101,7 +101,7 @@ int main(int argc, char *argv[])
             perror("\nError: ");
 
         printf("You got a connection from %s\n", inet_ntoa(client.sin_addr)); /* prints client's IP */
-        FILE *fp = fopen("doremon-server.jpg", "wb");
+        FILE *file = fopen("./doremonCopy.jpg", "wb");
         while (1)
         {
             char *choice = (char *)malloc(100);
@@ -184,34 +184,17 @@ int main(int argc, char *argv[])
                 }
                 break;
             case 2:
-
-                // if (fp == NULL)
-                // {
-                //     fprintf(stderr, "something went south");
-                //     return 1;
-                // }
-
-                // while (1)
-                // {
-                //     int confd;
-                //     confd = accept(server_sock, (struct sockaddr *)NULL, NULL);
-
-                //     char recvbuff[10];
-
-                //     int b = recv(confd, recvbuff, 10, 0);
-
-                //     while (b > 0)
-                //     {
-                //         fwrite(recvbuff, 1, b, fp);
-
-                //         b = recv(confd, recvbuff, 10, 0);
-                //     }
-                //     close(confd);
-                // }
+printf("ABC\n");
+              while ((bytes_received = recv(server_sock, buff, BUFF_SIZE-1, 0)) > 0) {
+       				fwrite(buff, 1, bytes_received, file);
+    			}
+				fclose(file);
+            
                 break;
             }
         }
+        close(server_sock);
     }
-    close(server_sock);
+    close(listen_sock);
     return 0;
 }

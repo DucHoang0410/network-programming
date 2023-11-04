@@ -107,20 +107,24 @@ int main(int argc, char *argv[])
                 }
                 break;
             case 2:
-        
-				if (!file) {
-        			perror("Error: ");
-       				return -1;
-    			}
-				while (!feof(file)) {
-       				size_t bytesRead = fread(buff, 1, sizeof(buff), file);
-        			if (send(client_sock, buff, bytesRead, 0) < 0) {
-            			perror("Error: ");
-            			return -1;
-        			}
-        			bzero(buff, BUFF_SIZE);
-				}
-				fclose(file);
+                printf("File sent successfully\n");
+
+                if (!file)
+                {
+                    perror("Error: ");
+                    return -1;
+                }
+                while (!feof(file))
+                {
+                    size_t bytesRead = fread(buff, 1, sizeof(buff), file);
+                    if (send(client_sock, buff, bytesRead, 0) < 0)
+                    {
+                        perror("Error: ");
+                        return -1;
+                    }
+                    bzero(buff, BUFF_SIZE);
+                }
+                fclose(file);
                 break;
             }
         }

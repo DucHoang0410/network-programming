@@ -184,6 +184,7 @@ int main(int argc, char *argv[])
                 }
                 break;
             case 2:
+            printf("\nSave the file successfully\n");
               while ((bytes_received = recv(server_sock, buff, BUFF_SIZE-1, 0)) > 0) {
        				fwrite(buff, 1, bytes_received, file);
     			}

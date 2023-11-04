@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
     while (1)
     {
         sin_size = sizeof(struct sockaddr);
-        FILE *file = fopen("./doremon.jpg", "rb");
+        FILE *file = fopen("./doremon1.jpg", "rb");
         while (1)
         {
             int choice;
